@@ -28,6 +28,16 @@ public class Airline extends AbstractAirline{
     }
 
     /**
+     * Copy Constructor
+     * @param airline
+     */
+    //Copy constructor
+    public Airline (AbstractAirline airline){
+        name = airline.getName();
+        flightList = new ArrayList<>(airline.getFlights());
+    }
+
+    /**
      * Method that returns the name of the airline.
      * @return  The name of the airline
      */
