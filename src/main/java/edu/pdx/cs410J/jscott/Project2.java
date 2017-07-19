@@ -3,7 +3,6 @@ package edu.pdx.cs410J.jscott;
 import edu.pdx.cs410J.AbstractAirline;
 import edu.pdx.cs410J.ParserException;
 
-import javax.swing.text.html.parser.Parser;
 import java.io.File;
 import java.io.IOException;
 
@@ -22,8 +21,8 @@ public class Project2 {
         Class c = AbstractAirline.class;  // Refer to one of Dave's classes so that we can be sure it is on the classpath
 
         if(args.length > 12) {
-            System.err.println("Error: Unable to enter flight info due to incorrect number of arguments. " +
-                    "Expected: name, flightNumber, src, departTime, dest, arriveTime");
+            System.err.println("Error: Maximum number of arguments exceeded. Unable to enter flight info due to incorrect" +
+                    " number of arguments. Expected: name, flightNumber, src, departTime, dest, arriveTime");
             System.exit(1);
         }
         String [] commands = new String[8];
@@ -43,7 +42,7 @@ public class Project2 {
                 }
                 if((args[j]).equalsIgnoreCase("-textFile")){
                     flags[2] = (args[j]);
-                    //Make sure filename is included after textfile
+                    //Make sure filename is included after text file flag
                     if(j+1 < args.length){
                         ++j;
                         flags[3] = args[j];
@@ -97,12 +96,10 @@ public class Project2 {
                     //if file does not exist create new empty airline
                     airline = new Airline(commands[0]);
                 }
-            } catch (ParserException ex){
-                System.err.println(ex);
+            } catch (ParserException ex) {
                 System.err.println("Unable to open requested file " + flags[3] + ". Creating new file.");
                 airline = new Airline(commands[0]);
             }
-            //TODO: ARE THE AIRLINE NAMES EQUAL?
         }
         else{
             airline = new Airline(commands[0]);
@@ -115,10 +112,9 @@ public class Project2 {
         if(flags[0] != null) {
             System.out.println(flight.toString());
         }
-        System.exit(0);
 
         //-textFile flag prints airline to file
-        if(flags[2] != null){
+        if(flags[2] != null && flags[3] != null){
             TextDumper textDumper = new TextDumper(flags[3]);
             try {
                 textDumper.dump(airline);
@@ -127,6 +123,10 @@ public class Project2 {
                 e.printStackTrace();
             }
         }
+        else {
+            System.err.println("Error: no filename indicated");
+        }
+        System.exit(0);
     }
 
     /**

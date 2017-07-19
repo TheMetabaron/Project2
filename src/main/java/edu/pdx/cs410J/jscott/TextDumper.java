@@ -32,14 +32,15 @@ public class TextDumper implements AirlineDumper {
             Writer writer = new FileWriter(filename);
 
             //Write Airline to the file
-            writer.write(airline.getName() + "\n");
+            writer.append(airline.getName());
+            writer.append("\n");
             ArrayList <Flight> flights = new ArrayList<>(airline.getFlights());
             for (Flight f : flights) {
-                writer.write(f.getNumber() + ";");
-                writer.write(f.getSource() + ";");
-                writer.write(f.getDepartureString() + ";");
-                writer.write(f.getDestination() + ";");
-                writer.write(f.getArrivalString() + "\n");
+                writer.append(f.getNumber() + ";");
+                writer.append(f.getSource() + ";");
+                writer.append(f.getDepartureString() + ";");
+                writer.append(f.getDestination() + ";");
+                writer.append(f.getArrivalString() + "\n");
             }
 
 
