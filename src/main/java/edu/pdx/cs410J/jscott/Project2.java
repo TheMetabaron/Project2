@@ -54,16 +54,17 @@ public class Project2 {
                 }
             }
             else {
+                if(i > 7) {
+                    System.err.println("Error: Missing command line arguments. Expected: name, flightNumber, src, departTime, dest, arriveTime");
+                    System.exit(1);
+
+                }
                 commands[i] = args[j];
                 ++i;
             }
         }
 
-        if(i != 8) {
-            System.err.println("Error: Missing command line arguments. Expected: name, flightNumber, src, departTime, dest, arriveTime");
-            System.exit(1);
 
-        }
         //Convert FlightValue to int
         int flightValue = 0;
         try{
@@ -87,7 +88,7 @@ public class Project2 {
                     //verify airline name from file matches command line airline if not exit
                     if(!airline.getName().equalsIgnoreCase(commands[0])){
                         System.err.println("Error: Unable to add new flight because the airline " + commands[0]
-                                + " you entered does not match the airline " + airline.getName() + "stored in file"
+                                + " you entered does not match the airline " + airline.getName() + " stored in file"
                                 + flags[3]);
                         System.exit(1);
                     }
