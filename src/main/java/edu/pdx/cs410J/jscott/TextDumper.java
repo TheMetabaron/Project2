@@ -47,7 +47,7 @@ public class TextDumper implements AirlineDumper {
             writer.flush();
             writer.close();
         } catch(IOException ex){
-            err.println("** " + ex);
+            throw new IOException(ex);
         }
     }
 }

@@ -38,4 +38,18 @@ public class TextParserTest {
         //assertThat(southwest.getFlights(), equalTo(testAirline.getFlights()));
     }
 
+    //If the text file does not exist it should create an empty airline
+    @Test
+    public void noTextFileParserReturnsGracefully(){
+        TextParser parser = new TextParser ("Dummy.txt");
+        Airline testAirline = null;
+        try {
+
+            testAirline = new Airline(parser.parse());
+        } catch (ParserException e) {
+            e.printStackTrace();
+        }
+        assertThat(testAirline, equalTo(null));
+    }
+
 }

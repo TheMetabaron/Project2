@@ -27,6 +27,10 @@ public class Airline extends AbstractAirline{
       flightList = new ArrayList<>();
     }
 
+    //Default Constructor
+    public Airline(){
+    }
+
     /**
      * Copy Constructor
      * @param airline
