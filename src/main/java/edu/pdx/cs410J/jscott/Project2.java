@@ -4,6 +4,7 @@ import edu.pdx.cs410J.AbstractAirline;
 import edu.pdx.cs410J.ParserException;
 
 import javax.swing.text.html.parser.Parser;
+import java.io.File;
 import java.io.IOException;
 
 
@@ -20,7 +21,7 @@ public class Project2 {
     public static void main(String[] args) {
         Class c = AbstractAirline.class;  // Refer to one of Dave's classes so that we can be sure it is on the classpath
 
-        if(args.length > 10) {
+        if(args.length > 12) {
             System.err.println("Error: Unable to enter flight info due to incorrect number of arguments. " +
                     "Expected: name, flightNumber, src, departTime, dest, arriveTime");
             System.exit(1);
@@ -51,7 +52,6 @@ public class Project2 {
                         System.err.println("Error: Expects argument after -textFile");
                         System.exit(1);
                     }
-
                 }
             }
             else {
@@ -82,7 +82,21 @@ public class Project2 {
         if(flags[2] != null && flags[3] != null){
             TextParser parser = new TextParser(flags[3]);
             try {
-                airline = new Airline(parser.parse());
+                File f = new File(flags[3]);
+                if(f.isFile()){
+                    airline = new Airline(parser.parse());
+                    //verify airline name from file matches command line airline if not exit
+                    if(!airline.getName().equalsIgnoreCase(commands[0])){
+                        System.err.println("Error: Unable to add new flight because the airline " + commands[0]
+                                + " you entered does not match the airline " + airline.getName() + "stored in file"
+                                + flags[3]);
+                        System.exit(1);
+                    }
+                }
+                else{
+                    //if file does not exist create new empty airline
+                    airline = new Airline(commands[0]);
+                }
             } catch (ParserException ex){
                 System.err.println(ex);
                 System.err.println("Unable to open requested file " + flags[3] + ". Creating new file.");
