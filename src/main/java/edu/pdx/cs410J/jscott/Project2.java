@@ -55,15 +55,17 @@ public class Project2 {
             }
             else {
                 if(i > 7) {
-                    System.err.println("Error: Missing command line arguments. Expected: name, flightNumber, src, departTime, dest, arriveTime");
+                    System.err.println("Error: To many command line arguments. Expected: name, flightNumber, src, departTime, dest, arriveTime");
                     System.exit(1);
-
                 }
                 commands[i] = args[j];
                 ++i;
             }
         }
-
+        if(i < 8) {
+            System.err.println("Error: Missing command line arguments. Expected: name, flightNumber, src, departTime, dest, arriveTime");
+            System.exit(1);
+        }
 
         //Convert FlightValue to int
         int flightValue = 0;
@@ -84,7 +86,9 @@ public class Project2 {
             try {
                 File f = new File(flags[3]);
                 if(f.isFile()){
+
                     airline = new Airline(parser.parse());
+
                     //verify airline name from file matches command line airline if not exit
                     if(!airline.getName().equalsIgnoreCase(commands[0])){
                         System.err.println("Error: Unable to add new flight because the airline " + commands[0]
@@ -124,7 +128,7 @@ public class Project2 {
                 e.printStackTrace();
             }
         }
-        else {
+        else if(flags[2] != null){
             System.err.println("Error: no filename indicated");
         }
         System.exit(0);
@@ -173,9 +177,9 @@ public class Project2 {
         }
 
         //check DepartTime and ArriveTime are in format mm/dd/yyyy hh:mm  (3 and 5)
-        if(!commands[3].matches("([1-9]|(1[0-2]))/([0-9]|[1-2][0-9]|30)/([0-9]{4})")
+        if(!commands[3].matches("(0?[1-9]|(1[0-2]))/([0-9]|[0-2][0-9]|3[0-1])/([0-9]{4})")
                 | !commands[4].matches("(([0-1][0-9])|(2[0-4])):(([0-4][0-9])|5[0-9])")
-                | !commands[6].matches("([1-9]|([0-1][0-2]))/([0-9]|[0-2][0-9]|30)/([0-9]{4})")
+                | !commands[6].matches("(0?[1-9]|([0-1][0-2]))/([0-9]|[0-2][0-9]|3[0-1])/([0-9]{4})")
                 | !commands[7].matches("(([0-1][0-9])|(2[0-4])):([0-5][0-9])")){
             System.err.println("Error: 4th and 6th arguments must be in the format mm/dd/yyyy hh:mm");
             System.err.println("Your entries were: " + commands[3] + " " + commands[4]

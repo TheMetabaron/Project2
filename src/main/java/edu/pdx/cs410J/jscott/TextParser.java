@@ -46,13 +46,19 @@ public class TextParser implements AirlineParser {
                 if (br.ready()) {
                     //First gets Airline Name
                     airlineName = br.readLine();
+                    //was file empty?
+                    if(airlineName.isEmpty()){
+                        System.err.println("Error while parsing file: " + filename + ". The file was empty or formatted incorrectly");
+                        System.exit(1);
+                    }
                     airline = new Airline(airlineName);
 
                     while (br.ready()) {
                         //Each Subsequent line should be data for a single flight (5 data points)
                         StringTokenizer parser = new StringTokenizer(br.readLine(), ";");
                         if (parser.countTokens() != 5) {
-                            System.err.println("ERROR: While parsing file did not get expected 5 arguments");
+                            System.err.println("ERROR: While parsing file did not get expected 5 arguments for a flight.\n" +
+                                    "Make Sure the File: " + filename + "is formatted correctly.");
                             System.exit(1);
                         }
                         int i = 0;
@@ -66,13 +72,19 @@ public class TextParser implements AirlineParser {
                     }
                 }
             } catch (IOException ex) {
+                System.err.println("Error reading file");
                 throw new ParserException("While parsing text file ", ex);
             }
         }
         else{
-            return null;
+            System.err.println("Error reading file. File name not found");
+            System.exit(1);
         }
 
+        if(airline == null){
+            System.err.println("Error reading file. File is not formatted correctly");
+            System.exit(1);
+        }
         return airline;
     }
 }
