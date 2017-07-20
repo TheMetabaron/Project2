@@ -66,9 +66,15 @@ public class TextParser implements AirlineParser {
                             args[i] = parser.nextToken();
                             i++;
                         }
-                        Flight flight = new Flight(airlineName, Integer.valueOf(args[0]),
-                                args[1], args[2], args[3], args[4]);
-                        airline.addFlight(flight);
+                        if(checkCommandLineArguments(args) == 0) {
+                            Flight flight = new Flight(airlineName, Integer.valueOf(args[0]),
+                                    args[1], args[2], args[3], args[4]);
+                            airline.addFlight(flight);
+                        }
+                        else{
+                            System.err.println("Error reading file. File is not formatted correctly");
+                            System.exit(1);
+                        }
                     }
                 }
             } catch (IOException ex) {
@@ -86,5 +92,25 @@ public class TextParser implements AirlineParser {
             System.exit(1);
         }
         return airline;
+    }
+
+    private static int checkCommandLineArguments(String [] commands){
+        //check to make sure airport code is 3 letter (2 and 4)
+        if(!commands[1].matches("[a-zA-z]{3}") || !commands[3].matches("[a-zA-z]{3}")){
+            System.err.println("Error Parsing File: The airport codes must consist of three letters");
+            System.err.println("Your entries were: " + commands[1] + " and " + commands[3]);
+            System.exit(2);
+        }
+
+        //check DepartTime and ArriveTime are in format mm/dd/yyyy hh:mm  (3 and 5)
+        if(!commands[2].matches("(0?[1-9]|(1[0-2]))/([0-9]|[0-2][0-9]|3[0-1])/([0-9]{4})" +
+                "\\p{Space}(([0-1][0-9])|(2[0-4])):([0-5][0-9])")
+                | !commands[4].matches("(0?[1-9]|([0-1][0-2]))/([0-9]|[0-2][0-9]|3[0-1])/([0-9]{4})" +
+                "\\p{Space}(([0-1][0-9])|(2[0-4])):([0-5][0-9])")){
+            System.err.println("Error Parsing File: Date and time must be in the format mm/dd/yyyy hh:mm");
+            System.err.println("Your entries were: " + commands[2] + " and " + commands[4]);
+            System.exit(2);
+        }
+        return 0;
     }
 }
