@@ -145,9 +145,10 @@ public class Project2 {
         System.out.println("The purpose of this program is to simulate an Airline booking application.\n" +
                 "The current functionality includes the ability to enter the information for\n" +
                 "a flight at the command line and that information will be entered into the\n" +
-                "fundamental Airline and Flight objects\n");
+                "fundamental Airline and Flight objects.\n" +
+                "Added for project 2 is the printFile flag that reads and prints to file\n.");
         System.out.println("USAGE\n\n" +
-                "java edu.pdx.cs410J.jscott.Project1 [options] <args>\n\n" +
+                "java edu.pdx.cs410J.jscott.Project2 [options] <args>\n\n" +
                 "Command Line Arguments:\n" +
                 "This program expects the following arguments in the order listed\n" +
                 "name\t\t\tThe name of the airline\n" +
@@ -158,8 +159,9 @@ public class Project2 {
                 "arriveTime\t\tArrival date and time (24 hour time see note)\n");
         System.out.println("note: Date and time should be in the format: mm/dd/yyyy hh:mm");
         System.out.println("\nOptions:\n" +
-                "-print\t\t\tPrints a description of the new flight\n" +
-                "-README\t\t\tPrints a README for this project and exits\n");
+                "-textFile file\t\tWhere to read/write the airline info\n" +
+                "-print\t\t\t\tPrints a description of the new flight\n" +
+                "-README\t\t\t\tPrints a README for this project and exits\n");
         System.exit(4);
     }
 
