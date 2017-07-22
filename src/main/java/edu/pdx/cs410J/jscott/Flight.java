@@ -2,6 +2,7 @@ package edu.pdx.cs410J.jscott;
 
 import edu.pdx.cs410J.AbstractFlight;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 /**
@@ -14,9 +15,9 @@ public class Flight extends AbstractFlight {
   private int FlightNumber;
   private String Name;
   private String Src;
-  private String DepartTime;
+  private Date DepartTime;
   private String Dest;
-  private String ArriveTime;
+  private Date ArriveTime;
 
   /**
    * The default constructor does not take any arguments and sets default dummy values for each field.
@@ -26,9 +27,9 @@ public class Flight extends AbstractFlight {
     Name = "Default";
     FlightNumber = 42;
     Src = "ABC";
-    DepartTime = "00:00";
+    DepartTime = new Date();
     Dest = "ABC";
-    ArriveTime = "00:00";
+    ArriveTime = new Date();
   }
 
 
@@ -42,7 +43,7 @@ public class Flight extends AbstractFlight {
    * @param DestinationCode The three letter code of the arrival airport
    * @param ArrivalTime The arrival date/time am/pm
    */
-  public Flight (String AirlineName, int FlightValue, String SourceAirportCode, String DepartureTime, String DestinationCode, String ArrivalTime){
+  public Flight (String AirlineName, int FlightValue, String SourceAirportCode, Date DepartureTime, String DestinationCode, Date ArrivalTime){
     super();
     Name = AirlineName;
     FlightNumber = FlightValue;
@@ -83,7 +84,11 @@ public class Flight extends AbstractFlight {
    * @return  the departure time
    */
   @Override
-  public String getDepartureString() {return DepartTime;}
+  public String getDepartureString() {
+    int f = DateFormat.SHORT;
+    DateFormat df = DateFormat.getDateTimeInstance(f, f);
+    return df.format(DepartTime);
+  }
 
   /**
    * A getter for the destination code
@@ -100,9 +105,9 @@ public class Flight extends AbstractFlight {
    */
   @Override
   public String getArrivalString() {
-    return ArriveTime;
-
-
+    int f = DateFormat.SHORT;
+    DateFormat df = DateFormat.getDateTimeInstance(f, f);
+    return df.format(ArriveTime);
   }
   @Override
   public Date getDeparture() {
