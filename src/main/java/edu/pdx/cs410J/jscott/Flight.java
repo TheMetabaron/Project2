@@ -2,6 +2,8 @@ package edu.pdx.cs410J.jscott;
 
 import edu.pdx.cs410J.AbstractFlight;
 
+import java.util.Date;
+
 /**
  * The Flight class defines an object that represents all the necessary data fields for a flight. This includes the
  * flight number, airline name, 3 digit source airport code, departure time, 3 digit destination airport code, and
@@ -29,14 +31,16 @@ public class Flight extends AbstractFlight {
     ArriveTime = "00:00";
   }
 
+
+
   /**
    * A constructor with parameters for each data field.
-   * @param AirlineName
-   * @param FlightValue
-   * @param SourceAirportCode
-   * @param DepartureTime
-   * @param DestinationCode
-   * @param ArrivalTime
+   * @param AirlineName The name of the airline
+   * @param FlightValue The flight number
+   * @param SourceAirportCode The three letter code departure airport
+   * @param DepartureTime Departure date/time am/pm
+   * @param DestinationCode The three letter code of the arrival airport
+   * @param ArrivalTime The arrival date/time am/pm
    */
   public Flight (String AirlineName, int FlightValue, String SourceAirportCode, String DepartureTime, String DestinationCode, String ArrivalTime){
     super();
@@ -97,5 +101,17 @@ public class Flight extends AbstractFlight {
   @Override
   public String getArrivalString() {
     return ArriveTime;
+
+
+  }
+  @Override
+  public Date getDeparture() {
+    return super.getDeparture();
+  }
+
+
+  @Override
+  public Date getArrival() {
+    return super.getArrival();
   }
 }

@@ -5,6 +5,9 @@ import edu.pdx.cs410J.ParserException;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
 
 
 /**
@@ -79,6 +82,11 @@ public class Project2 {
         //Check command line arguments
         checkCommandLineArguments(commands);
 
+        //parse date objects
+        Date arrivalTime = parseDateTime(commands[3] + " " + commands[4]);
+        Date departureTime = parseDateTime(commands[6] + " " + commands[7]);
+
+
         //if -printFile flag load Airline from file else create new
         Airline airline;
         if(flags[2] != null && flags[3] != null){
@@ -109,6 +117,8 @@ public class Project2 {
         else{
             airline = new Airline(commands[0]);
         }
+
+        //Create new Flight
         Flight flight = new Flight(commands[0], flightValue, commands[2], commands[3] + " " + commands[4],
                 commands[5], commands[6] + " " +commands[7]);
         airline.addFlight(flight);
@@ -188,6 +198,21 @@ public class Project2 {
                     + " and " + commands[6] + " " + commands[7]);
             System.exit(2);
         }
+    }
+
+    private static Date parseDateTime(String dateTime){
+
+        Date result = null;
+        int format = DateFormat.SHORT;
+        DateFormat df = DateFormat.getDateTimeInstance(format, format);
+
+        try{
+            result = df.parse(dateTime);
+        } catch(ParseException ex) {
+            System.err.println("Error: Bad date format. Please use the format mm/dd/yyy hh:mm am/pm. You entered - " + dateTime);
+            System.exit(1);
+        }
+        return result;
     }
 
 }
