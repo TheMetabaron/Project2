@@ -90,8 +90,9 @@ public class Project3 {
             checkCommandLineArguments(commands);
 
             //parse date objects
-            Date arrivalTime = parseDateTime(commands[3] + " " + commands[4]);
-            Date departureTime = parseDateTime(commands[6] + " " + commands[7]);
+            DateTimeParser dateTime = new DateTimeParser();
+            Date arrivalTime = dateTime.parse(commands[3] + " " + commands[4]);
+            Date departureTime = dateTime.parse(commands[6] + " " + commands[7]);
 
 
             //if -printFile flag load Airline from file else create new
@@ -204,21 +205,6 @@ public class Project3 {
                     + " and " + commands[6] + " " + commands[7]);
             System.exit(2);
         }*/
-    }
-
-    private static Date parseDateTime(String dateTime){
-
-        Date result = null;
-        int format = DateFormat.SHORT;
-        DateFormat df = DateFormat.getDateTimeInstance(format, format);
-
-        try{
-            result = df.parse(dateTime);
-        } catch(ParseException ex) {
-            System.err.println("Error: Bad date format. Please use the format mm/dd/yyy hh:mm am/pm. You entered - " + dateTime);
-            System.exit(1);
-        }
-        return result;
     }
 
 }

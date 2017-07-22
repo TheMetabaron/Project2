@@ -37,11 +37,11 @@ public class Flight extends AbstractFlight {
   /**
    * A constructor with parameters for each data field.
    * @param AirlineName The name of the airline
-   * @param FlightValue The flight number
+   * @param FlightValue The flight number and integer value
    * @param SourceAirportCode The three letter code departure airport
-   * @param DepartureTime Departure date/time am/pm
+   * @param DepartureTime Departure date/time am/pm a date object in SHORT date format
    * @param DestinationCode The three letter code of the arrival airport
-   * @param ArrivalTime The arrival date/time am/pm
+   * @param ArrivalTime The arrival date/time am/pm date object in SHORT date format
    */
   public Flight (String AirlineName, int FlightValue, String SourceAirportCode, Date DepartureTime, String DestinationCode, Date ArrivalTime){
     super();
@@ -81,7 +81,7 @@ public class Flight extends AbstractFlight {
 
   /**
    * A method without parameters that returns the departure date and time as a single string
-   * @return  the departure time
+   * @return  the departure time as a String in SHORT date format
    */
   @Override
   public String getDepartureString() {
@@ -101,7 +101,7 @@ public class Flight extends AbstractFlight {
 
   /**
    * A getter for the arrival date and time as a single string
-   * @return  arrival date and time
+   * @return  arrival date and time as a String in SHORT date format
    */
   @Override
   public String getArrivalString() {
@@ -109,14 +109,22 @@ public class Flight extends AbstractFlight {
     DateFormat df = DateFormat.getDateTimeInstance(f, f);
     return df.format(ArriveTime);
   }
+
+    /**
+     * New Method for Project 3 returns a date object
+     * @return A date object for departure time
+     */
   @Override
   public Date getDeparture() {
-    return super.getDeparture();
+    return DepartTime;
   }
 
-
+    /**
+     * A new mehtod for Projet 3 returns a date object
+     * @return a date object for arrival time
+     */
   @Override
   public Date getArrival() {
-    return super.getArrival();
+    return ArriveTime;
   }
 }

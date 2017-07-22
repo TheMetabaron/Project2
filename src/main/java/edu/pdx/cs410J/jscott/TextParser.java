@@ -79,9 +79,10 @@ public class TextParser implements AirlineParser {
                             args[i] = parser.nextToken();
                             i++;
                         }
+                        DateTimeParser convert = new DateTimeParser();
                         if(checkCommandLineArguments(args) == 0) {
                             Flight flight = new Flight(airlineName, Integer.valueOf(args[0]),
-                                    args[1], args[2], args[3], args[4]);
+                                    args[1], convert.parse(args[2]), args[3], convert.parse(args[4]));
                             airline.addFlight(flight);
                         }
                         else{
