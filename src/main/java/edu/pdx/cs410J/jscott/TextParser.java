@@ -105,6 +105,8 @@ public class TextParser implements AirlineParser {
             System.err.println("Error reading file. File is not formatted correctly");
             System.exit(1);
         }
+        //TODO: Sort by Airport
+
         return airline;
     }
 
@@ -122,7 +124,7 @@ public class TextParser implements AirlineParser {
         }
 
         //check DepartTime and ArriveTime are in format mm/dd/yyyy hh:mm  (3 and 5)
-        if(!commands[2].matches("(0?[1-9]|(1[0-2]))/([0-9]|[0-2][0-9]|3[0-1])/([0-9]{4})" +
+        /*if(!commands[2].matches("(0?[1-9]|(1[0-2]))/([0-9]|[0-2][0-9]|3[0-1])/([0-9]{4})" +
                 "\\p{Space}(([0-1][0-9])|(2[0-4])):([0-5][0-9])")
                 | !commands[4].matches("(0?[1-9]|([0-1][0-2]))/([0-9]|[0-2][0-9]|3[0-1])/([0-9]{4})" +
                 "\\p{Space}(([0-1][0-9])|(2[0-4])):([0-5][0-9])")){
@@ -130,6 +132,7 @@ public class TextParser implements AirlineParser {
             System.err.println("Your entries were: " + commands[2] + " and " + commands[4]);
             System.exit(2);
         }
+        */
         return 0;
     }
 }

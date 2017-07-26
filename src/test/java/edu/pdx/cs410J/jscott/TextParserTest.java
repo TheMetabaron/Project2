@@ -4,6 +4,7 @@ import edu.pdx.cs410J.ParserException;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -18,7 +19,7 @@ public class TextParserTest {
     public void textParserCreatesAirlineEqualtoTextDumper(){
         Airline southwest = new Airline("Southwest");
         Flight flight = new Flight("Southwest", 3130, "PDX",
-                "12/30/2017 09:00", "LAX", "12/20/2017 10:00");
+                new Date(2017, 12, 30, 9, 0), "LAX", new Date(2017, 12, 20, 10, 0));
         southwest.addFlight(flight);
         TextDumper writer = new TextDumper("testParser.txt");
         try{

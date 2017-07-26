@@ -1,4 +1,4 @@
-package edu.pdx.cs410J.jscott;
+/*package edu.pdx.cs410J.jscott;
 
 import edu.pdx.cs410J.InvokeMainTestCase;
 import org.junit.AfterClass;
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * An integration test that demonstrates the expected behavior of
  * creating a new airline file.
- */
+ * /
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Project2IT extends InvokeMainTestCase {
 
@@ -80,3 +80,4 @@ public class Project2IT extends InvokeMainTestCase {
     }
 
 }
+*/

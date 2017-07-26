@@ -3,9 +3,7 @@ package edu.pdx.cs410J.jscott;
 import edu.pdx.cs410J.AbstractAirline;
 import edu.pdx.cs410J.AbstractFlight;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * The Airline Class was written for project 1 in order to represent an airline object and all flights associated with
@@ -14,8 +12,8 @@ import java.util.List;
  */
 public class Airline extends AbstractAirline{
 
-    private String name;
-    private List<AbstractFlight> flightList;
+    private static String name;
+    private static List<AbstractFlight> flightList;
 
     /**
      * Constructor takes the airline name as an argument and generates an empty list of flights. Must use the addFlight()
@@ -66,5 +64,9 @@ public class Airline extends AbstractAirline{
     @Override
     public Collection getFlights() {
         return flightList;
+    }
+
+    public static void sort(){
+        Collections.sort(flightList, new FlightComparator());
     }
 }

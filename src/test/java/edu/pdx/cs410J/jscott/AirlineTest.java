@@ -2,6 +2,8 @@ package edu.pdx.cs410J.jscott;
 
 import org.junit.Test;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -22,7 +24,13 @@ public class AirlineTest {
     @Test
     public void addFlightisRetreivedByGetFlight() throws Exception {
         Airline southwest = new Airline("Southwest");
-        Flight flight = new Flight("Southwest", 666, "PDX", "08:00", "LAX", "11:00");
+        Date date1 = new Date(123456);
+        Date date2 = new Date(123999);
+        Calendar cal = Calendar.getInstance();
+        cal.set(2017, 12, 30, 8, 00);
+
+
+        Flight flight = new Flight("Southwest", 666, "PDX", date1, "LAX", date2);
 
         southwest.addFlight(flight);
         assertTrue(southwest.getFlights().contains(flight));

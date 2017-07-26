@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -22,7 +23,7 @@ public class TextDumperTest {
     public void givenAirlineDumpWritesToFile() {
         Airline southwest = new Airline("Southwest");
         Flight flight = new Flight("Southwest", 3130, "PDX",
-                "09:00 12/30/2017", "LAX", "10:00 12/20/2017");
+                new Date(999999), "LAX", new Date(99999999));
         southwest.addFlight(flight);
         TextDumper writer = new TextDumper("test.txt");
 
