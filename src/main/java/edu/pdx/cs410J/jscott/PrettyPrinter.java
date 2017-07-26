@@ -45,7 +45,18 @@ public class PrettyPrinter implements AirlineDumper {
 
         if (filename.equalsIgnoreCase("-")) {
             //If filename == "-" -> print to console
-
+            System.out.println("*************************************************");
+            System.out.println("Schedule of Flights for: " + airline.getName() );
+            System.out.println("*************************************************");
+            ArrayList<Flight> flights = new ArrayList<>(airline.getFlights());
+            for (Flight f : flights) {
+                System.out.println("Flight Number:       " + f.getNumber());
+                System.out.println("Departure Airport:   " + AirportNames.getName(f.getSource()));
+                System.out.println("Departure Date:      " + f.getDeparture().toString());
+                System.out.println("Destination Airport: " + AirportNames.getName(f.getDestination()));
+                System.out.println("Arrival Date:        " + f.getArrival().toString());
+                System.out.println("-------------------------------------------------");
+            }
         }
         //print to filename
         else{
