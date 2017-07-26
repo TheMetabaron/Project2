@@ -35,7 +35,7 @@ public class TextDumper implements AirlineDumper {
     /**
      * The dump method provides the main functionaility for the TextDumper class. This method  opens the file name
      * passed to the constructor and adds the new flight to the file.
-     * @param airline
+     * @param airline an abstract airline object
      * @throws IOException
      */
     @Override

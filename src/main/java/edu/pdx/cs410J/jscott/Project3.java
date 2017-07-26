@@ -158,6 +158,19 @@ public class Project3 {
         } else if (flags[2] != null) {
             System.err.println("Error: no filename indicated");
         }
+
+        //-pretty flag prints airline to file or console
+        if(flags[4] != null && flags[5] != null){
+            PrettyPrinter prettyPrinter = new PrettyPrinter(flags[5]);
+            try{
+                prettyPrinter.dump(airline);
+            } catch (IOException e){
+                System.err.println("Pretty Printer failed due to IO Exception");
+            }
+        } else if (flags[4] != null) {
+            System.err.println("Error: no filename indicated after -pretty flag");
+        }
+
         System.exit(0);
     }
 

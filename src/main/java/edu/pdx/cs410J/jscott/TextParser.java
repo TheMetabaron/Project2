@@ -105,8 +105,6 @@ public class TextParser implements AirlineParser {
             System.err.println("Error reading file. File is not formatted correctly");
             System.exit(1);
         }
-        //TODO: Sort by Airport
-        //airline.sort()
         return airline;
     }
 
