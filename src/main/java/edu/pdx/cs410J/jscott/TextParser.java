@@ -106,7 +106,7 @@ public class TextParser implements AirlineParser {
             System.exit(1);
         }
         //TODO: Sort by Airport
-
+        //airline.sort()
         return airline;
     }
 

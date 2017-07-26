@@ -31,7 +31,7 @@ public class FlightComparator implements Comparator<AbstractFlight> {
             return -1;
         }
         else if(compare > 0){
-            //This is ledicographically greater than the argument string
+            //This is lexicographically greater than the argument string
             return 1;
         }
         else {
@@ -44,6 +44,7 @@ public class FlightComparator implements Comparator<AbstractFlight> {
             else if (departure1.after(departure2)){
                 return 1;
             }
+            //if departure times are equal, do nothing
         }
         return 0;
     }

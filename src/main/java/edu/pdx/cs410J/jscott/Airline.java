@@ -55,6 +55,7 @@ public class Airline extends AbstractAirline{
     @Override
     public void addFlight(AbstractFlight abstractFlight) {
         flightList.add(abstractFlight);
+        this.sort();
     }
 
     /**
@@ -66,6 +67,10 @@ public class Airline extends AbstractAirline{
         return flightList;
     }
 
+    /**
+     * Method added for Project 3 to sort by Airport Source Code. If aiport code is equal sorts by Departure time.
+     * Uses @FlightComparator object
+     */
     public static void sort(){
         Collections.sort(flightList, new FlightComparator());
     }
