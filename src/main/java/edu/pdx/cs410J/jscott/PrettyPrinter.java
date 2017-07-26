@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by scottjones on 7/26/17.
@@ -43,6 +44,8 @@ public class PrettyPrinter implements AirlineDumper {
     @Override
     public void dump(AbstractAirline airline) throws IOException {
 
+        long duration = 0;
+
         if (filename.equalsIgnoreCase("-")) {
             //If filename == "-" -> print to console
             System.out.println("*************************************************");
@@ -50,11 +53,15 @@ public class PrettyPrinter implements AirlineDumper {
             System.out.println("*************************************************");
             ArrayList<Flight> flights = new ArrayList<>(airline.getFlights());
             for (Flight f : flights) {
+                duration = 0;
                 System.out.println("Flight Number:       " + f.getNumber());
                 System.out.println("Departure Airport:   " + AirportNames.getName(f.getSource()));
                 System.out.println("Departure Date:      " + f.getDeparture().toString());
                 System.out.println("Destination Airport: " + AirportNames.getName(f.getDestination()));
                 System.out.println("Arrival Date:        " + f.getArrival().toString());
+                duration = f.getArrival().getTime() - f.getDeparture().getTime();
+                duration = duration /1000/60;
+                System.out.println("Flight Duration:     " + duration + " minutes");
                 System.out.println("-------------------------------------------------");
             }
         }

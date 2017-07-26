@@ -1,6 +1,7 @@
 package edu.pdx.cs410J.jscott;
 
 import edu.pdx.cs410J.AbstractAirline;
+import edu.pdx.cs410J.AirportNames;
 import edu.pdx.cs410J.ParserException;
 
 import java.io.File;
@@ -29,7 +30,7 @@ public class Project3 {
                     " number of arguments. Expected: name, flightNumber, src, departTime, dest, arriveTime");
             System.exit(1);
         }
-        String[] commands = new String[11];
+        String[] commands = new String[10];
         String[] flags = new String[6];
         int i = 0;
         for (int j = 0; j < args.length; ++j) {
@@ -68,7 +69,7 @@ public class Project3 {
                 }
             }
             else {
-                if (i > 10) {
+                if (i > 9) {
                     System.err.println("Error: To many command line arguments. Expected: name, flightNumber, src, departTime, dest, arriveTime");
                     System.exit(1);
                 }
@@ -173,7 +174,7 @@ public class Project3 {
 
         System.exit(0);
     }
-
+//TODO: Update README
     /**
      * This method prints an explanation of the program functionality.
      */
@@ -187,7 +188,8 @@ public class Project3 {
                 "a flight at the command line and that information will be entered into the\n" +
                 "fundamental Airline and Flight objects.\n" +
                 "Added for project 2 is the printFile flag that reads and prints to file\n." +
-                "Added for project 3 is the pretty flag that prints an Airline's flights to a text file or standard out.\n");
+                "Added for project 3 is the pretty flag that prints an Airline's flights to a text file or standard out.\n" +
+                "The list of Flights is now ordered based on Departure airport and Departure time." );
         System.out.println("USAGE\n\n" +
                 "java edu.pdx.cs410J.jscott.Project2 [options] <args>\n\n" +
                 "Command Line Arguments:\n" +
@@ -217,6 +219,18 @@ public class Project3 {
         if (!commands[2].matches("[a-zA-z]{3}") || !commands[6].matches("[a-zA-z]{3}")) {
             System.err.println("Error: The airport codes must consist of three letters");
             System.err.println("Your entries were: " + commands[2] + " and " + commands[6]);
+            System.exit(2);
+        }
+        else{
+            commands[2] = commands[2].toUpperCase();
+            commands[6] = commands[6].toUpperCase();
+        }
+        if(AirportNames.getName(commands[2]) == null){
+            System.err.println("Error: The Airport code " + commands[2] + " does not correspond to a known airport in our Database" );
+            System.exit(2);
+        }
+        if(AirportNames.getName(commands[6]) == null){
+            System.err.println("Error: The Airport code " + commands[6] + " does not correspond to a known airport in our Database" );
             System.exit(2);
         }
 

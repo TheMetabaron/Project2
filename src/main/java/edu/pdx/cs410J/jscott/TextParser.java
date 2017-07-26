@@ -120,6 +120,10 @@ public class TextParser implements AirlineParser {
             System.err.println("Your entries were: " + commands[1] + " and " + commands[3]);
             System.exit(2);
         }
+        else{
+            commands[1] = commands[1].toUpperCase();
+            commands[3] = commands[3].toUpperCase();
+        }
 
         //check DepartTime and ArriveTime are in format mm/dd/yyyy hh:mm  (3 and 5)
         /*if(!commands[2].matches("(0?[1-9]|(1[0-2]))/([0-9]|[0-2][0-9]|3[0-1])/([0-9]{4})" +
